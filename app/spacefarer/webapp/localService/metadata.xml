@@ -1,0 +1,662 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml">
+        <edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Validation.V1.xml">
+        <edmx:Include Alias="Validation" Namespace="Org.OData.Validation.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="SpacefarerService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="ReadSpacefarer" EntityType="SpacefarerService.ReadSpacefarer">
+                    <NavigationPropertyBinding Path="stardust_collection_status" Target="Status"/>
+                    <NavigationPropertyBinding Path="wormhole_navigation_skill" Target="Skill"/>
+                    <NavigationPropertyBinding Path="adventure" Target="ReadSpacefarer_adventure"/>
+                </EntitySet>
+                <EntitySet Name="UpdateSpacefarer" EntityType="SpacefarerService.UpdateSpacefarer">
+                    <NavigationPropertyBinding Path="stardust_collection_status" Target="Status"/>
+                    <NavigationPropertyBinding Path="wormhole_navigation_skill" Target="Skill"/>
+                    <NavigationPropertyBinding Path="adventure" Target="UpdateSpacefarer_adventure"/>
+                </EntitySet>
+                <EntitySet Name="InsertSpacefarer" EntityType="SpacefarerService.InsertSpacefarer">
+                    <NavigationPropertyBinding Path="stardust_collection_status" Target="Status"/>
+                    <NavigationPropertyBinding Path="wormhole_navigation_skill" Target="Skill"/>
+                    <NavigationPropertyBinding Path="adventure" Target="InsertSpacefarer_adventure"/>
+                </EntitySet>
+                <EntitySet Name="DeleteSpacefarer" EntityType="SpacefarerService.DeleteSpacefarer">
+                    <NavigationPropertyBinding Path="stardust_collection_status" Target="Status"/>
+                    <NavigationPropertyBinding Path="wormhole_navigation_skill" Target="Skill"/>
+                    <NavigationPropertyBinding Path="adventure" Target="DeleteSpacefarer_adventure"/>
+                </EntitySet>
+                <EntitySet Name="Status" EntityType="SpacefarerService.Status">
+                    <NavigationPropertyBinding Path="texts" Target="Status_texts"/>
+                    <NavigationPropertyBinding Path="localized" Target="Status_texts"/>
+                </EntitySet>
+                <EntitySet Name="Skill" EntityType="SpacefarerService.Skill">
+                    <NavigationPropertyBinding Path="texts" Target="Skill_texts"/>
+                    <NavigationPropertyBinding Path="localized" Target="Skill_texts"/>
+                </EntitySet>
+                <EntitySet Name="ReadSpacefarer_adventure" EntityType="SpacefarerService.ReadSpacefarer_adventure">
+                    <NavigationPropertyBinding Path="up_" Target="ReadSpacefarer"/>
+                </EntitySet>
+                <EntitySet Name="UpdateSpacefarer_adventure" EntityType="SpacefarerService.UpdateSpacefarer_adventure">
+                    <NavigationPropertyBinding Path="up_" Target="UpdateSpacefarer"/>
+                </EntitySet>
+                <EntitySet Name="InsertSpacefarer_adventure" EntityType="SpacefarerService.InsertSpacefarer_adventure">
+                    <NavigationPropertyBinding Path="up_" Target="InsertSpacefarer"/>
+                </EntitySet>
+                <EntitySet Name="DeleteSpacefarer_adventure" EntityType="SpacefarerService.DeleteSpacefarer_adventure">
+                    <NavigationPropertyBinding Path="up_" Target="DeleteSpacefarer"/>
+                </EntitySet>
+                <EntitySet Name="Status_texts" EntityType="SpacefarerService.Status_texts"/>
+                <EntitySet Name="Skill_texts" EntityType="SpacefarerService.Skill_texts"/>
+            </EntityContainer>
+            <EntityType Name="ReadSpacefarer">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="email" Type="Edm.String" MaxLength="50"/>
+                <Property Name="first_name" Type="Edm.String" MaxLength="30"/>
+                <Property Name="last_name" Type="Edm.String" MaxLength="30"/>
+                <Property Name="space_ship_ID" Type="Edm.Guid"/>
+                <NavigationProperty Name="stardust_collection_status" Type="SpacefarerService.Status">
+                    <ReferentialConstraint Property="stardust_collection_status_code" ReferencedProperty="code"/>
+                </NavigationProperty>
+                <Property Name="stardust_collection_status_code" Type="Edm.String"/>
+                <NavigationProperty Name="wormhole_navigation_skill" Type="SpacefarerService.Skill">
+                    <ReferentialConstraint Property="wormhole_navigation_skill_code" ReferencedProperty="code"/>
+                </NavigationProperty>
+                <Property Name="wormhole_navigation_skill_code" Type="Edm.String"/>
+                <Property Name="origin_planet" Type="Edm.String" MaxLength="50"/>
+                <Property Name="spacesuit_color" Type="Edm.String" MaxLength="50"/>
+                <Property Name="sign_up_date" Type="Edm.Date"/>
+                <NavigationProperty Name="adventure" Type="Collection(SpacefarerService.ReadSpacefarer_adventure)" Partner="up_">
+                    <OnDelete Action="Cascade"/>
+                </NavigationProperty>
+            </EntityType>
+            <EntityType Name="UpdateSpacefarer">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="email" Type="Edm.String" MaxLength="50"/>
+                <Property Name="first_name" Type="Edm.String" MaxLength="30"/>
+                <Property Name="last_name" Type="Edm.String" MaxLength="30"/>
+                <Property Name="space_ship_ID" Type="Edm.Guid"/>
+                <NavigationProperty Name="stardust_collection_status" Type="SpacefarerService.Status">
+                    <ReferentialConstraint Property="stardust_collection_status_code" ReferencedProperty="code"/>
+                </NavigationProperty>
+                <Property Name="stardust_collection_status_code" Type="Edm.String"/>
+                <NavigationProperty Name="wormhole_navigation_skill" Type="SpacefarerService.Skill">
+                    <ReferentialConstraint Property="wormhole_navigation_skill_code" ReferencedProperty="code"/>
+                </NavigationProperty>
+                <Property Name="wormhole_navigation_skill_code" Type="Edm.String"/>
+                <Property Name="origin_planet" Type="Edm.String" MaxLength="50"/>
+                <Property Name="spacesuit_color" Type="Edm.String" MaxLength="50"/>
+                <Property Name="sign_up_date" Type="Edm.Date"/>
+                <NavigationProperty Name="adventure" Type="Collection(SpacefarerService.UpdateSpacefarer_adventure)" Partner="up_">
+                    <OnDelete Action="Cascade"/>
+                </NavigationProperty>
+            </EntityType>
+            <EntityType Name="InsertSpacefarer">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="email" Type="Edm.String" MaxLength="50"/>
+                <Property Name="first_name" Type="Edm.String" MaxLength="30"/>
+                <Property Name="last_name" Type="Edm.String" MaxLength="30"/>
+                <Property Name="space_ship_ID" Type="Edm.Guid"/>
+                <NavigationProperty Name="stardust_collection_status" Type="SpacefarerService.Status">
+                    <ReferentialConstraint Property="stardust_collection_status_code" ReferencedProperty="code"/>
+                </NavigationProperty>
+                <Property Name="stardust_collection_status_code" Type="Edm.String"/>
+                <NavigationProperty Name="wormhole_navigation_skill" Type="SpacefarerService.Skill">
+                    <ReferentialConstraint Property="wormhole_navigation_skill_code" ReferencedProperty="code"/>
+                </NavigationProperty>
+                <Property Name="wormhole_navigation_skill_code" Type="Edm.String"/>
+                <Property Name="origin_planet" Type="Edm.String" MaxLength="50"/>
+                <Property Name="spacesuit_color" Type="Edm.String" MaxLength="50"/>
+                <Property Name="sign_up_date" Type="Edm.Date"/>
+                <NavigationProperty Name="adventure" Type="Collection(SpacefarerService.InsertSpacefarer_adventure)" Partner="up_">
+                    <OnDelete Action="Cascade"/>
+                </NavigationProperty>
+            </EntityType>
+            <EntityType Name="DeleteSpacefarer">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="email" Type="Edm.String" MaxLength="50"/>
+                <Property Name="first_name" Type="Edm.String" MaxLength="30"/>
+                <Property Name="last_name" Type="Edm.String" MaxLength="30"/>
+                <Property Name="space_ship_ID" Type="Edm.Guid"/>
+                <NavigationProperty Name="stardust_collection_status" Type="SpacefarerService.Status">
+                    <ReferentialConstraint Property="stardust_collection_status_code" ReferencedProperty="code"/>
+                </NavigationProperty>
+                <Property Name="stardust_collection_status_code" Type="Edm.String"/>
+                <NavigationProperty Name="wormhole_navigation_skill" Type="SpacefarerService.Skill">
+                    <ReferentialConstraint Property="wormhole_navigation_skill_code" ReferencedProperty="code"/>
+                </NavigationProperty>
+                <Property Name="wormhole_navigation_skill_code" Type="Edm.String"/>
+                <Property Name="origin_planet" Type="Edm.String" MaxLength="50"/>
+                <Property Name="spacesuit_color" Type="Edm.String" MaxLength="50"/>
+                <Property Name="sign_up_date" Type="Edm.Date"/>
+                <NavigationProperty Name="adventure" Type="Collection(SpacefarerService.DeleteSpacefarer_adventure)" Partner="up_">
+                    <OnDelete Action="Cascade"/>
+                </NavigationProperty>
+            </EntityType>
+            <EntityType Name="Status">
+                <Key>
+                    <PropertyRef Name="code"/>
+                </Key>
+                <Property Name="name" Type="Edm.String" MaxLength="255"/>
+                <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="code" Type="Edm.String" Nullable="false"/>
+                <Property Name="criticality" Type="Edm.Int32"/>
+                <Property Name="insertDeleteRestriction" Type="Edm.Boolean"/>
+                <NavigationProperty Name="texts" Type="Collection(SpacefarerService.Status_texts)">
+                    <OnDelete Action="Cascade"/>
+                </NavigationProperty>
+                <NavigationProperty Name="localized" Type="SpacefarerService.Status_texts">
+                    <ReferentialConstraint Property="code" ReferencedProperty="code"/>
+                </NavigationProperty>
+            </EntityType>
+            <EntityType Name="Skill">
+                <Key>
+                    <PropertyRef Name="code"/>
+                </Key>
+                <Property Name="name" Type="Edm.String" MaxLength="255"/>
+                <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="code" Type="Edm.String" Nullable="false"/>
+                <NavigationProperty Name="texts" Type="Collection(SpacefarerService.Skill_texts)">
+                    <OnDelete Action="Cascade"/>
+                </NavigationProperty>
+                <NavigationProperty Name="localized" Type="SpacefarerService.Skill_texts">
+                    <ReferentialConstraint Property="code" ReferencedProperty="code"/>
+                </NavigationProperty>
+            </EntityType>
+            <EntityType Name="ReadSpacefarer_adventure">
+                <Key>
+                    <PropertyRef Name="up__ID"/>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <NavigationProperty Name="up_" Type="SpacefarerService.ReadSpacefarer" Nullable="false" Partner="adventure">
+                    <ReferentialConstraint Property="up__ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="up__ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="timestamp" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="author" Type="Edm.String" MaxLength="255"/>
+                <Property Name="message" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="UpdateSpacefarer_adventure">
+                <Key>
+                    <PropertyRef Name="up__ID"/>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <NavigationProperty Name="up_" Type="SpacefarerService.UpdateSpacefarer" Nullable="false" Partner="adventure">
+                    <ReferentialConstraint Property="up__ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="up__ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="timestamp" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="author" Type="Edm.String" MaxLength="255"/>
+                <Property Name="message" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="InsertSpacefarer_adventure">
+                <Key>
+                    <PropertyRef Name="up__ID"/>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <NavigationProperty Name="up_" Type="SpacefarerService.InsertSpacefarer" Nullable="false" Partner="adventure">
+                    <ReferentialConstraint Property="up__ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="up__ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="timestamp" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="author" Type="Edm.String" MaxLength="255"/>
+                <Property Name="message" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="DeleteSpacefarer_adventure">
+                <Key>
+                    <PropertyRef Name="up__ID"/>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <NavigationProperty Name="up_" Type="SpacefarerService.DeleteSpacefarer" Nullable="false" Partner="adventure">
+                    <ReferentialConstraint Property="up__ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="up__ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="timestamp" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="author" Type="Edm.String" MaxLength="255"/>
+                <Property Name="message" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="Status_texts">
+                <Key>
+                    <PropertyRef Name="locale"/>
+                    <PropertyRef Name="code"/>
+                </Key>
+                <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+                <Property Name="name" Type="Edm.String" MaxLength="255"/>
+                <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="code" Type="Edm.String" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="Skill_texts">
+                <Key>
+                    <PropertyRef Name="locale"/>
+                    <PropertyRef Name="code"/>
+                </Key>
+                <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+                <Property Name="name" Type="Edm.String" MaxLength="255"/>
+                <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="code" Type="Edm.String" Nullable="false"/>
+            </EntityType>
+            <Annotations Target="SpacefarerService.EntityContainer/ReadSpacefarer">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record Type="Capabilities.DeleteRestrictionsType">
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record Type="Capabilities.InsertRestrictionsType">
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record Type="Capabilities.UpdateRestrictionsType">
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SpacefarerService.ReadSpacefarer/ID">
+                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+            </Annotations>
+            <Annotations Target="SpacefarerService.ReadSpacefarer/stardust_collection_status_code">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="Label" String="Status"/>
+                        <PropertyValue Property="CollectionPath" String="Status"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="stardust_collection_status_code"/>
+                                    <PropertyValue Property="ValueListProperty" String="code"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="name"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SpacefarerService.ReadSpacefarer/wormhole_navigation_skill_code">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="Label" String="Skill"/>
+                        <PropertyValue Property="CollectionPath" String="Skill"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="wormhole_navigation_skill_code"/>
+                                    <PropertyValue Property="ValueListProperty" String="code"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="name"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SpacefarerService.UpdateSpacefarer/ID">
+                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+            </Annotations>
+            <Annotations Target="SpacefarerService.UpdateSpacefarer/stardust_collection_status_code">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="Label" String="Status"/>
+                        <PropertyValue Property="CollectionPath" String="Status"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="stardust_collection_status_code"/>
+                                    <PropertyValue Property="ValueListProperty" String="code"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="name"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SpacefarerService.UpdateSpacefarer/wormhole_navigation_skill_code">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="Label" String="Skill"/>
+                        <PropertyValue Property="CollectionPath" String="Skill"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="wormhole_navigation_skill_code"/>
+                                    <PropertyValue Property="ValueListProperty" String="code"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="name"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SpacefarerService.EntityContainer/InsertSpacefarer">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record Type="Capabilities.DeleteRestrictionsType">
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.ReadRestrictions">
+                    <Record Type="Capabilities.ReadRestrictionsType">
+                        <PropertyValue Property="Readable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record Type="Capabilities.UpdateRestrictionsType">
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SpacefarerService.InsertSpacefarer/ID">
+                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+            </Annotations>
+            <Annotations Target="SpacefarerService.InsertSpacefarer/stardust_collection_status_code">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="Label" String="Status"/>
+                        <PropertyValue Property="CollectionPath" String="Status"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="stardust_collection_status_code"/>
+                                    <PropertyValue Property="ValueListProperty" String="code"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="name"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SpacefarerService.InsertSpacefarer/wormhole_navigation_skill_code">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="Label" String="Skill"/>
+                        <PropertyValue Property="CollectionPath" String="Skill"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="wormhole_navigation_skill_code"/>
+                                    <PropertyValue Property="ValueListProperty" String="code"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="name"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SpacefarerService.DeleteSpacefarer/ID">
+                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+            </Annotations>
+            <Annotations Target="SpacefarerService.DeleteSpacefarer/stardust_collection_status_code">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="Label" String="Status"/>
+                        <PropertyValue Property="CollectionPath" String="Status"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="stardust_collection_status_code"/>
+                                    <PropertyValue Property="ValueListProperty" String="code"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="name"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SpacefarerService.DeleteSpacefarer/wormhole_navigation_skill_code">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="Label" String="Skill"/>
+                        <PropertyValue Property="CollectionPath" String="Skill"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="wormhole_navigation_skill_code"/>
+                                    <PropertyValue Property="ValueListProperty" String="code"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="name"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SpacefarerService.Status">
+                <Annotation Term="UI.Identification">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="name"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SpacefarerService.Status/name">
+                <Annotation Term="Common.Label" String="{i18n>Name}"/>
+                </Annotations>
+                <Annotations Target="SpacefarerService.Status/descr">
+                    <Annotation Term="Common.Label" String="{i18n>Description}"/>
+                    </Annotations>
+                    <Annotations Target="SpacefarerService.Status/code">
+                        <Annotation Term="Validation.AllowedValues">
+                            <Collection>
+                                <Record Type="Validation.AllowedValue">
+                                    <Annotation Term="Core.SymbolicName" String="high"/>
+                                    <PropertyValue Property="Value" String="H"/>
+                                </Record>
+                                <Record Type="Validation.AllowedValue">
+                                    <Annotation Term="Core.SymbolicName" String="medium"/>
+                                    <PropertyValue Property="Value" String="M"/>
+                                </Record>
+                                <Record Type="Validation.AllowedValue">
+                                    <Annotation Term="Core.SymbolicName" String="low"/>
+                                    <PropertyValue Property="Value" String="L"/>
+                                </Record>
+                            </Collection>
+                        </Annotation>
+                    </Annotations>
+                    <Annotations Target="SpacefarerService.Skill">
+                        <Annotation Term="UI.Identification">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="name"/>
+                                </Record>
+                            </Collection>
+                        </Annotation>
+                    </Annotations>
+                    <Annotations Target="SpacefarerService.Skill/name">
+                        <Annotation Term="Common.Label" String="{i18n>Name}"/>
+                        </Annotations>
+                        <Annotations Target="SpacefarerService.Skill/descr">
+                            <Annotation Term="Common.Label" String="{i18n>Description}"/>
+                            </Annotations>
+                            <Annotations Target="SpacefarerService.Skill/code">
+                                <Annotation Term="Validation.AllowedValues">
+                                    <Collection>
+                                        <Record Type="Validation.AllowedValue">
+                                            <Annotation Term="Core.SymbolicName" String="bad"/>
+                                            <PropertyValue Property="Value" String="B"/>
+                                        </Record>
+                                        <Record Type="Validation.AllowedValue">
+                                            <Annotation Term="Core.SymbolicName" String="good"/>
+                                            <PropertyValue Property="Value" String="G"/>
+                                        </Record>
+                                        <Record Type="Validation.AllowedValue">
+                                            <Annotation Term="Core.SymbolicName" String="awesome"/>
+                                            <PropertyValue Property="Value" String="A"/>
+                                        </Record>
+                                    </Collection>
+                                </Annotation>
+                            </Annotations>
+                            <Annotations Target="SpacefarerService.ReadSpacefarer_adventure/up__ID">
+                                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+                            </Annotations>
+                            <Annotations Target="SpacefarerService.ReadSpacefarer_adventure/ID">
+                                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+                            </Annotations>
+                            <Annotations Target="SpacefarerService.ReadSpacefarer_adventure/timestamp">
+                                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                <Annotation Term="Core.Immutable" Bool="true"/>
+                                <Annotation Term="Core.Computed" Bool="true"/>
+                                <Annotation Term="Common.Label" String="{i18n>CreatedAt}"/>
+                                </Annotations>
+                                <Annotations Target="SpacefarerService.ReadSpacefarer_adventure/author">
+                                    <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                    <Annotation Term="Core.Immutable" Bool="true"/>
+                                    <Annotation Term="Core.Computed" Bool="true"/>
+                                    <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                        <Annotation Term="Common.Label" String="{i18n>CreatedBy}"/>
+                                        </Annotations>
+                                        <Annotations Target="SpacefarerService.UpdateSpacefarer_adventure/up__ID">
+                                            <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+                                        </Annotations>
+                                        <Annotations Target="SpacefarerService.UpdateSpacefarer_adventure/ID">
+                                            <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+                                        </Annotations>
+                                        <Annotations Target="SpacefarerService.UpdateSpacefarer_adventure/timestamp">
+                                            <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                            <Annotation Term="Core.Immutable" Bool="true"/>
+                                            <Annotation Term="Core.Computed" Bool="true"/>
+                                            <Annotation Term="Common.Label" String="{i18n>CreatedAt}"/>
+                                            </Annotations>
+                                            <Annotations Target="SpacefarerService.UpdateSpacefarer_adventure/author">
+                                                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                <Annotation Term="Core.Immutable" Bool="true"/>
+                                                <Annotation Term="Core.Computed" Bool="true"/>
+                                                <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                                    <Annotation Term="Common.Label" String="{i18n>CreatedBy}"/>
+                                                    </Annotations>
+                                                    <Annotations Target="SpacefarerService.InsertSpacefarer_adventure/up__ID">
+                                                        <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+                                                    </Annotations>
+                                                    <Annotations Target="SpacefarerService.InsertSpacefarer_adventure/ID">
+                                                        <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+                                                    </Annotations>
+                                                    <Annotations Target="SpacefarerService.InsertSpacefarer_adventure/timestamp">
+                                                        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                        <Annotation Term="Core.Immutable" Bool="true"/>
+                                                        <Annotation Term="Core.Computed" Bool="true"/>
+                                                        <Annotation Term="Common.Label" String="{i18n>CreatedAt}"/>
+                                                        </Annotations>
+                                                        <Annotations Target="SpacefarerService.InsertSpacefarer_adventure/author">
+                                                            <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                            <Annotation Term="Core.Immutable" Bool="true"/>
+                                                            <Annotation Term="Core.Computed" Bool="true"/>
+                                                            <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                                                <Annotation Term="Common.Label" String="{i18n>CreatedBy}"/>
+                                                                </Annotations>
+                                                                <Annotations Target="SpacefarerService.DeleteSpacefarer_adventure/up__ID">
+                                                                    <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+                                                                </Annotations>
+                                                                <Annotations Target="SpacefarerService.DeleteSpacefarer_adventure/ID">
+                                                                    <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+                                                                </Annotations>
+                                                                <Annotations Target="SpacefarerService.DeleteSpacefarer_adventure/timestamp">
+                                                                    <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                                    <Annotation Term="Core.Immutable" Bool="true"/>
+                                                                    <Annotation Term="Core.Computed" Bool="true"/>
+                                                                    <Annotation Term="Common.Label" String="{i18n>CreatedAt}"/>
+                                                                    </Annotations>
+                                                                    <Annotations Target="SpacefarerService.DeleteSpacefarer_adventure/author">
+                                                                        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                                        <Annotation Term="Core.Immutable" Bool="true"/>
+                                                                        <Annotation Term="Core.Computed" Bool="true"/>
+                                                                        <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                                                            <Annotation Term="Common.Label" String="{i18n>CreatedBy}"/>
+                                                                            </Annotations>
+                                                                            <Annotations Target="SpacefarerService.Status_texts/locale">
+                                                                                <Annotation Term="Common.Label" String="{i18n>LanguageCode}"/>
+                                                                                </Annotations>
+                                                                                <Annotations Target="SpacefarerService.Status_texts/name">
+                                                                                    <Annotation Term="Common.Label" String="{i18n>Name}"/>
+                                                                                    </Annotations>
+                                                                                    <Annotations Target="SpacefarerService.Status_texts/descr">
+                                                                                        <Annotation Term="Common.Label" String="{i18n>Description}"/>
+                                                                                        </Annotations>
+                                                                                        <Annotations Target="SpacefarerService.Status_texts/code">
+                                                                                            <Annotation Term="Validation.AllowedValues">
+                                                                                                <Collection>
+                                                                                                    <Record Type="Validation.AllowedValue">
+                                                                                                        <Annotation Term="Core.SymbolicName" String="high"/>
+                                                                                                        <PropertyValue Property="Value" String="H"/>
+                                                                                                    </Record>
+                                                                                                    <Record Type="Validation.AllowedValue">
+                                                                                                        <Annotation Term="Core.SymbolicName" String="medium"/>
+                                                                                                        <PropertyValue Property="Value" String="M"/>
+                                                                                                    </Record>
+                                                                                                    <Record Type="Validation.AllowedValue">
+                                                                                                        <Annotation Term="Core.SymbolicName" String="low"/>
+                                                                                                        <PropertyValue Property="Value" String="L"/>
+                                                                                                    </Record>
+                                                                                                </Collection>
+                                                                                            </Annotation>
+                                                                                        </Annotations>
+                                                                                        <Annotations Target="SpacefarerService.Skill_texts/locale">
+                                                                                            <Annotation Term="Common.Label" String="{i18n>LanguageCode}"/>
+                                                                                            </Annotations>
+                                                                                            <Annotations Target="SpacefarerService.Skill_texts/name">
+                                                                                                <Annotation Term="Common.Label" String="{i18n>Name}"/>
+                                                                                                </Annotations>
+                                                                                                <Annotations Target="SpacefarerService.Skill_texts/descr">
+                                                                                                    <Annotation Term="Common.Label" String="{i18n>Description}"/>
+                                                                                                    </Annotations>
+                                                                                                    <Annotations Target="SpacefarerService.Skill_texts/code">
+                                                                                                        <Annotation Term="Validation.AllowedValues">
+                                                                                                            <Collection>
+                                                                                                                <Record Type="Validation.AllowedValue">
+                                                                                                                    <Annotation Term="Core.SymbolicName" String="bad"/>
+                                                                                                                    <PropertyValue Property="Value" String="B"/>
+                                                                                                                </Record>
+                                                                                                                <Record Type="Validation.AllowedValue">
+                                                                                                                    <Annotation Term="Core.SymbolicName" String="good"/>
+                                                                                                                    <PropertyValue Property="Value" String="G"/>
+                                                                                                                </Record>
+                                                                                                                <Record Type="Validation.AllowedValue">
+                                                                                                                    <Annotation Term="Core.SymbolicName" String="awesome"/>
+                                                                                                                    <PropertyValue Property="Value" String="A"/>
+                                                                                                                </Record>
+                                                                                                            </Collection>
+                                                                                                        </Annotation>
+                                                                                                    </Annotations>
+                                                                                                </Schema>
+                                                                                            </edmx:DataServices>
+                                                                                        </edmx:Edmx>

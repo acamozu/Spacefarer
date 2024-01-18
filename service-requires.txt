@@ -1,0 +1,15 @@
+/* "cds": {
+  "requires": {
+    "[development]": {
+      "auth": {
+        "kind": "mocked",
+        "users": {
+          "sap.cap@test.com": {
+            "password": "initial",
+            "roles": ["support"]
+          }
+        }
+      }
+    }
+  }
+}, */
