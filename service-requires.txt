@@ -1,0 +1,17 @@
+/* "cds": {
+  "requires": {
+    "[development]": {
+      "auth": {
+        "kind": "mocked",
+        "users": {
+          "sap.cap@test.com": {
+            "password": "initial",
+            "roles": ["support"]
+          }
+        }
+      }
+    }
+  }
+}, */
+
+TO SECURE THE SERVICE THIS GOES TO package.json

@@ -1,0 +1,147 @@
+{
+    "_version": "1.59.0",
+    "sap.app": {
+        "id": "spacefarer",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:lrop",
+            "version": "1.12.1",
+            "toolsId": "4c4ec2e3-5e9e-4f19-a8e6-cf93846ca452"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/odata/v4/spacefarer/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "4.0"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.120.4",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ushell": {},
+                "sap.fe.templates": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "spacefarer.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            }
+        },
+        "resources": {
+            "css": []
+        },
+        "routing": {
+            "routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "ReadSpacefarerList",
+                    "target": "ReadSpacefarerList"
+                },
+                {
+                    "pattern": "ReadSpacefarer({key}):?query:",
+                    "name": "ReadSpacefarerObjectPage",
+                    "target": "ReadSpacefarerObjectPage"
+                }
+            ],
+            "targets": {
+                "ReadSpacefarerList": {
+                    "type": "Component",
+                    "id": "ReadSpacefarerList",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings": {
+                            "contextPath": "/ReadSpacefarer",
+                            "variantManagement": "Page",
+                            "navigation": {
+                                "ReadSpacefarer": {
+                                    "detail": {
+                                        "route": "ReadSpacefarerObjectPage"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "ReadSpacefarerObjectPage": {
+                    "type": "Component",
+                    "id": "ReadSpacefarerObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "editableHeaderContent": false,
+                            "contextPath": "/ReadSpacefarer",
+                            "navigation": {},
+                            "controlConfiguration": {
+                                "adventure/@com.sap.vocabularies.UI.v1.LineItem#i18nAdventure": {
+                                    "tableSettings": {
+                                        "type": "ResponsiveTable",
+                                        "creationMode": {
+                                            "name": "Inline"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "sap.fiori": {
+        "registrationIds": [],
+        "archeType": "transactional"
+    }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "Spacefarer",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^7.5.2",
+    "express": "^4",
+    "nodemailer": "^6.9.8",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^1",
+    "@sap/ux-specification": "^1.120.1"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-spacefarer": "cds watch --open spacefarer/webapp/index.html?sap-ui-xx-viewCache=false"
+  },
+  "sapux": [
+    "app/spacefarer"
+  ]
+}
