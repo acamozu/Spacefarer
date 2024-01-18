@@ -112,7 +112,7 @@ module.exports = srv => {
                 service: 'gmail',
                 auth: {
                     user: 'acamozu1@gmail.com',
-                    pass: '110400647aA*'
+                    pass: '***********'
                 }
             });
     
