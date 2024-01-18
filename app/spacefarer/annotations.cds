@@ -130,9 +130,10 @@ annotate service.ReadSpacefarer with {
 
 annotate service.ReadSpacefarer.adventure with @(UI.LineItem #i18nAdventure: [
     {
-        $Type: 'UI.DataField',
-        Value: message,
-        Label: '{i18n>Message}',
+        $Type            : 'UI.DataField',
+        Value            : message,
+        Label            : '{i18n>Message}',
+        ![@UI.Importance]: #High,
     },
     {
         $Type: 'UI.DataField',
@@ -179,7 +180,7 @@ annotate service.ReadSpacefarer with @(UI.FieldGroup #FarerInformation: {
             Label                    : '{i18n>Whnsc}',
             Value                    : wormhole_navigation_skill_code,
             CriticalityRepresentation: #WithIcon,
-            Criticality : wormhole_navigation_skill.criticality,
+            Criticality              : wormhole_navigation_skill.criticality,
         },
         {
             $Type                    : 'UI.DataField',
@@ -197,6 +198,54 @@ annotate service.Status with {
         ![@UI.TextArrangement]: #TextLast,
     }
 };
+
 annotate service.ReadSpacefarer with {
-    wormhole_navigation_skill @Common.Text : wormhole_navigation_skill.descr
+    wormhole_navigation_skill @Common.Text: wormhole_navigation_skill.descr
+};
+
+
+annotate service.ReadSpacefarer with @(Capabilities.NavigationRestrictions: {RestrictedProperties: [{
+    NavigationProperty: adventure,
+    DeleteRestrictions: {Deletable: stardust_collection_status.insertDeleteRestriction}
+}]});
+
+
+annotate SpacefarerService.ReadSpacefarer {
+
+    first_name @Common.FieldControl: stardust_collection_status.fieldControl;
+
+};
+
+annotate service.ReadSpacefarer with @(
+    UI.DataPoint #stardust_collection_status_code: {
+        $Type               : 'UI.DataPointType',
+        Value               : stardust_collection_status_code,
+        Title               : '{i18n>StardustCollectionStatusCode}',
+        Criticality         : stardust_collection_status.criticality,
+        ![@Common.QuickInfo]: stardust_collection_status_code,
+    },
+    UI.DataPoint #wormhole_navigation_skill_code : {
+        $Type               : 'UI.DataPointType',
+        Value               : wormhole_navigation_skill_code,
+        Title               : 'Wormhole Navigation Skill Code',
+        Criticality         : wormhole_navigation_skill.criticality,
+        ![@Common.QuickInfo]: wormhole_navigation_skill_code,
+    },
+    UI.HeaderFacets                              : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID    : 'stardust_collection_status_code',
+            Target: '@UI.DataPoint#stardust_collection_status_code',
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID    : 'wormhole_navigation_skill_code',
+            Target: '@UI.DataPoint#wormhole_navigation_skill_code',
+        },
+    ]
+);
+
+annotate service.ReadSpacefarer with {
+    spacesuit_color @Common.FieldControl: stardust_collection_status.criticality
+
 };

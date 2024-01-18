@@ -13,3 +13,5 @@
     }
   }
 }, */
+
+TO SECURE THE SERVICE THIS GOES TO package.json

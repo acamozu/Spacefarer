@@ -1,9 +1,14 @@
-const cds = require('@sap/cds');
+// CRUD OPERATIONS
+// TESTED ON POSTMAN
+
+
+/*const cds = require('@sap/cds');
 const { Spacefarer } = cds.entities("spacefarer.cap.db");
 const nodemailer = require('nodemailer');
 
+
 module.exports = srv => {
-    /*     srv.on("READ", "ReadSpacefarer", async (req, res) => {
+         srv.on("READ", "ReadSpacefarer", async (req, res) => {
             const aFilter = req.query.SELECT.where;
     
             if (typeof aFilter !== "undefined")
@@ -153,5 +158,5 @@ module.exports = srv => {
                 });
             console.log("DELETE DATA:\n", returnData);
             return returnData;
-        }); */
-};
+        }); 
+};*/

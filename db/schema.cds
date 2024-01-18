@@ -43,6 +43,7 @@ entity Status : CodeList {
         };
         criticality             : Integer;
         insertDeleteRestriction : Boolean;
+        fieldControl            : Boolean;
 }
 
 entity Skill : CodeList {

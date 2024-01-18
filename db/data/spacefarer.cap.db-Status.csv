@@ -1,4 +1,4 @@
-code;descr;criticality;insertDeleteRestriction
-H;High;3;1
-M;Medium;2;1
-L;Low;1;0
+code;descr;criticality;insertDeleteRestriction;fieldControl
+H;High;3;1;7
+M;Medium;2;0;1
+L;Low;1;0;1
