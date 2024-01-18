@@ -210,26 +210,20 @@ annotate service.ReadSpacefarer with @(Capabilities.NavigationRestrictions: {Res
 }]});
 
 
-annotate SpacefarerService.ReadSpacefarer {
-
-    first_name @Common.FieldControl: stardust_collection_status.fieldControl;
-
-};
-
 annotate service.ReadSpacefarer with @(
     UI.DataPoint #stardust_collection_status_code: {
         $Type               : 'UI.DataPointType',
-        Value               : stardust_collection_status_code,
+        Value               : stardust_collection_status.code,
         Title               : '{i18n>StardustCollectionStatusCode}',
         Criticality         : stardust_collection_status.criticality,
-        ![@Common.QuickInfo]: stardust_collection_status_code,
+        ![@Common.QuickInfo]: stardust_collection_status.descr,
     },
     UI.DataPoint #wormhole_navigation_skill_code : {
         $Type               : 'UI.DataPointType',
-        Value               : wormhole_navigation_skill_code,
+        Value               : wormhole_navigation_skill.code,
         Title               : 'Wormhole Navigation Skill Code',
         Criticality         : wormhole_navigation_skill.criticality,
-        ![@Common.QuickInfo]: wormhole_navigation_skill_code,
+        ![@Common.QuickInfo]: wormhole_navigation_skill.descr,
     },
     UI.HeaderFacets                              : [
         {
